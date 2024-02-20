@@ -1,12 +1,14 @@
-import { CarProps } from "@/types";
+import { CarProps, filterProps } from "@/types";
 
-export async function fetchCars() {
+export async function fetchCars(filters: filterProps) {
+    
+    const {manufacturer, model, fuel, year, limit} = filters;
     const headers = {
 		
         'X-Api-Key': 'wxj6WPagD+zb+R6HuTRNCQ==1ZXtyE17YobKPYpH'
     }
 
-    const response = await fetch('https://api.api-ninjas.com/v1/cars?model=q3', { headers: headers });
+    const response = await fetch(`https://api.api-ninjas.com/v1/cars?make=${manufacturer}&year=${year}&model=${model}&limit=${limit}&fuel=${fuel}`, { headers: headers });
     const result = await response.json();
     
     return result;
@@ -39,4 +41,16 @@ export const calculateCarRent = (city_mpg: number, year: number) => {
     const rentalRatePerDay = basePricePerDay + mileageRate + ageRate;
   
     return rentalRatePerDay.toFixed(0);
-  };
+};
+  
+export const updateSearchParams = (type: string, value: string) => { 
+    const searchParams = new URLSearchParams(window.location.search);
+
+    searchParams.set(type, value);
+
+    const newPathname = `${
+      window.location.pathname
+        }?${searchParams.toString()}`;
+    
+    return newPathname
+}

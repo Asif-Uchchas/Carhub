@@ -38,7 +38,9 @@
 /* END: General styles */
 
 /* START: Hero styles */
-v      
+.hero {
+  @apply flex xl:flex-row flex-col gap-5 relative z-0 max-w-[1440px] mx-auto;
+}
 
 .hero__title {
   @apply 2xl:text-[72px] sm:text-[64px] text-[50px] font-extrabold;
@@ -168,7 +170,7 @@ v
 }
 
 .footer__links {
-  @apply flex-1 w-full flex md:justify-end flex-wrap max-md:mt-10 gap-20 text-black;
+  @apply flex-1 w-full flex md:justify-end flex-wrap max-md:mt-10 gap-20;
 }
 
 .footer__link {
