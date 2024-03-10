@@ -4,11 +4,12 @@ import Hero from "@/Components/Hero";
 import SearchBar from "@/Components/SearchBar";
 import ShowMore from "@/Components/ShowMore";
 import { fuels, yearsOfProduction } from "@/Constants";
+import { searchParams } from "@/types";
 import { fetchCars } from "@/utils";
 import Image from "next/image";
 
 
-export default async function Home( {searchParams}) {
+export default async function Home( {searchParams} : {searchParams: searchParams}) {
   const allCars = await fetchCars({
     model: searchParams.model || '',
     manufacturer: searchParams.manufacturer || '',
